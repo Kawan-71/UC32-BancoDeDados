@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastrar Livro{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Cadastrar novo livro</h1>
+
+    <form method="POST">
+
+        <label for="titulo">Título do livro</label>
+        <input
+            type="text"
+            id="titulo"
+            name="titulo"
+            placeholder="Digite o título do livro"
+            required
+        >
+
+        <label for="ano">Ano de publicação</label>
+        <input
+            type="number"
+            id="ano"
+            name="ano"
+            placeholder="Ex: 2024"
+            required
+        >
+
+        <label for="id_autor">Autor</label>
+
+        <select id="id_autor" name="id_autor" required>
+
+            <option value="">Selecione um autor</option>
+
+            {% for autor in autores %}
+                <option value="{{ autor.id_autor }}">
+                    {{ autor.nome }}
+                </option>
+            {% endfor %}
+
+        </select>
+
+        <div class="form-buttons">
+
+            <a href="{{ url_for('livros') }}" class="btn">
+                Voltar
+            </a>
+
+            <button type="submit">
+                Cadastrar livro
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

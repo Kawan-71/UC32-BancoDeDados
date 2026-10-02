@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+
+<div class="container inicio">
+
+    <h1>Sistema de Biblioteca</h1>
+
+    <p class="descricao">
+        Bem-vindo ao sistema de gerenciamento da biblioteca.
+    </p>
+
+    <div class="cards">
+
+        <a href="{{ url_for('livros') }}" class="card">
+            <div class="icone">📚</div>
+            <h2>Livros</h2>
+            <p>Visualizar os livros cadastrados.</p>
+        </a>
+
+        <a href="{{ url_for('cadastrar') }}" class="card">
+            <div class="icone">➕</div>
+            <h2>Cadastrar</h2>
+            <p>Cadastrar um novo livro.</p>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

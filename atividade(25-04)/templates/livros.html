@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Livros{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Livros cadastrados</h1>
+
+    <div class="topo-pagina">
+        <p>Confira os livros cadastrados no sistema.</p>
+
+        <a href="{{ url_for('cadastrar') }}" class="btn">
+            + Cadastrar livro
+        </a>
+    </div>
+
+    {% if livros %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Ano</th>
+                <th>Autor</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for livro in livros %}
+            <tr>
+                <td>{{ livro.id_livro }}</td>
+                <td>{{ livro.titulo }}</td>
+                <td>{{ livro.ano }}</td>
+                <td>{{ livro.autor }}</td>
+
+                <td>
+                    <a href="{{ url_for('editar', id=livro.id_livro) }}"
+                       class="btn btn-editar">
+                        Editar
+                    </a>
+
+                    <a href="{{ url_for('excluir', id=livro.id_livro) }}"
+                       class="btn btn-excluir"
+                       onclick="return confirm('Deseja realmente excluir este livro?')">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+
+    <div class="vazio">
+        <div class="icone-vazio">📚</div>
+        <h2>Nenhum livro cadastrado</h2>
+        <p>Comece cadastrando o primeiro livro da biblioteca.</p>
+
+        <a href="{{ url_for('cadastrar') }}" class="btn">
+            Cadastrar primeiro livro
+        </a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
